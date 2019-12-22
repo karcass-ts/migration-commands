@@ -1,0 +1,42 @@
+{
+  "name": "@karcass/migration-commands",
+  "version": "0.0.1",
+  "description": "CliService commands for creation, doing and undoing TypeORM migrations",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "rm -Rf lib && tsc",
+    "watch": "rm -Rf lib && tsc -w",
+    "lint": "eslint -c .eslintrc.json --ext .ts src",
+    "test": "mocha lib/index.test.js",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karcass-ts/migration-commands"
+  },
+  "keywords": [
+    "karcass"
+  ],
+  "author": "Valeriy Shibanov <shibaon@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/karcass-ts/migration-commands/issues"
+  },
+  "homepage": "https://github.com/karcass-ts/migration-commands#readme",
+  "devDependencies": {
+    "@karcass/cli-service": "0.0.2",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.21",
+    "@typescript-eslint/eslint-plugin": "^2.12.0",
+    "@typescript-eslint/parser": "^2.12.0",
+    "eslint": "^6.7.2",
+    "mocha": "^6.2.2",
+    "sqlite3": "^4.1.1",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "typeorm": "^0.2.21"
+  }
+}
