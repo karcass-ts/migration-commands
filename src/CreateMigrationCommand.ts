@@ -1,7 +1,7 @@
-import { AbstractConsoleCommand } from '@karcass/cli-service'
+import { AbstractConsoleCommand } from '@karcass/cli'
 import fs from 'fs'
 import path from 'path'
-import { ConsoleColors } from '@karcass/cli-service/lib/AbstractConsoleCommand'
+import { ConsoleColors } from '@karcass/cli/lib/AbstractConsoleCommand'
 
 export class CreateMigrationCommand extends AbstractConsoleCommand {
     public static meta = {

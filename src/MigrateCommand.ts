@@ -1,4 +1,4 @@
-import { AbstractConsoleCommand } from '@karcass/cli-service'
+import { AbstractConsoleCommand } from '@karcass/cli'
 import { Connection } from 'typeorm'
 
 export class MigrateCommand extends AbstractConsoleCommand {

@@ -1,11 +1,11 @@
 import { CreateMigrationCommand, MigrateCommand, MigrateUndoCommand } from './'
-import { CliService } from '@karcass/cli-service'
+import { Cli } from '@karcass/cli'
 import { createConnection, Connection, QueryRunner, Table } from 'typeorm'
 import assert from 'assert'
 import { execSync } from 'child_process'
 import fs from 'fs'
 
-const cliService = new CliService()
+const cli = new Cli()
 let connection!: Connection
 
 execSync('rm -Rf ./test')
@@ -18,15 +18,15 @@ it('Must initialize with no errors', async () => {
     if (!connection) {
         assert.fail('sqlite connection is not established')
     }
-    cliService.add(CreateMigrationCommand, () => new CreateMigrationCommand())
-    cliService.add(MigrateCommand, () => new MigrateCommand(connection))
-    cliService.add(MigrateUndoCommand, () => new MigrateUndoCommand(connection))
-    cliService.run()
+    cli.add(CreateMigrationCommand, () => new CreateMigrationCommand())
+    cli.add(MigrateCommand, () => new MigrateCommand(connection))
+    cli.add(MigrateUndoCommand, () => new MigrateUndoCommand(connection))
+    cli.run()
 })
 it('Must create migration, and it must be valid', async function() {
     process.argv[2] = 'migrations:generate'
     process.argv[3] = 'test/testingname'
-    await cliService.run()
+    await cli.run()
     const file = fs.readdirSync('test').find(d => d.indexOf('testingname'))
     if (!file) {
         return assert.fail('Migration not generated')
@@ -55,7 +55,7 @@ it('Must apply two migrations', async () => {
     }
     connection.migrations.push(...Object.values(migrations).map(constructor => new constructor()))
     process.argv[2] = 'migrations:migrate'
-    await cliService.run()
+    await cli.run()
     if (!await connection.query('SELECT COUNT(*) from table1')) {
         assert.fail('table1 was not created')
     }
@@ -65,7 +65,7 @@ it('Must apply two migrations', async () => {
 })
 it('Must revert one migration', async () => {
     process.argv[2] = 'migrations:migrate:undo'
-    await cliService.run()
+    await cli.run()
     try {
         await connection.query('SELECT COUNT(*) from table2')
     } catch (err) {

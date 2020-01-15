@@ -1,6 +1,6 @@
 {
   "name": "@karcass/migration-commands",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "CliService commands for creation, doing and undoing TypeORM migrations",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/karcass-ts/migration-commands#readme",
   "devDependencies": {
-    "@karcass/cli-service": "0.0.2",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.12.21",
     "@typescript-eslint/eslint-plugin": "^2.12.0",
@@ -37,6 +36,7 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
+    "@karcass/cli": "0.0.1",
     "typeorm": "^0.2.21"
   }
 }
